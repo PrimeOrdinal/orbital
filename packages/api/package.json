@@ -1,0 +1,71 @@
+{
+  "author": {
+    "email": "karl.podger@primeordinal.com",
+    "name": "Karl Podger",
+    "url": "https://www.primeordinal.com"
+  },
+  "bugs": {
+    "url": "https://github.com/PrimeOrdinal/orbital/issues"
+  },
+  "description": "",
+  "dependencies": {
+    "@graphile-contrib/pg-many-to-many": "^1.0.0-beta.10",
+    "@graphile-contrib/pg-simplify-inflector": "^5.0.0-beta.1",
+    "postgraphile": "^4.4.4"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=10.0"
+  },
+  "homepage": "https://github.com/PrimeOrdinal/orbital#readme",
+  "husky": {
+    "hooks": {
+      "post-commit": "lint-staged",
+      "post-merge": "npm install",
+      "pre-push": "lerna run test"
+    }
+  },
+  "jest": {
+    "coverageReporters": [
+      "html"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "testRegex": "src/.+\\.test\\.ts$",
+    "transform": {
+      ".ts": "ts-jest"
+    }
+  },
+  "license": "ISC",
+  "lint-staged": {
+    "*.{js,ts}": [
+      "git add",
+      "lerna run lint"
+    ]
+  },
+  "main": "dist/index.js",
+  "name": "orbital-api",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PrimeOrdinal/orbital.git"
+  },
+  "scripts": {
+    "database:bootstrap": "npm run-script database:init && sleep 2 && npm run-script database:start && npm run-script database:create && npm run-script database:import",
+    "database:create": "createdb",
+    "database:danger": "rm -rf $PGDATA",
+    "database:start": "pg_ctl -l logfile start",
+    "database:stop": "pg_ctl -l logfile stop",
+    "database:import:data": "psql -f ./sql/data.sql",
+    "database:import:postgis": "psql -f ./sql/postgis.sql",
+    "database:import:schema": "psql -f ./sql/schema.sql",
+    "database:import": "npm run-script database:import:postgis && npm run-script database:import:schema && npm run-script database:import:data",
+    "database:init": "initdb",
+    "database:setup": "npm run-script database:setup:init && npm run-script database:setup:create",
+    "database:terminal": "psql $DATABASE_URL",
+    "service:start": "postgraphile --append-plugins @graphile-contrib/pg-simplify-inflector @graphile-contrib/pg-many-to-many --enhance-graphiql --no-ignore-rbac --schema $DB_SCHEMA",
+    "start": "npm run-script service:start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

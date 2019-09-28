@@ -1,0 +1,87 @@
+{
+  "author": {
+    "email": "karl.podger@primeordinal.com",
+    "name": "Karl Podger",
+    "url": "https://www.primeordinal.com"
+  },
+  "bugs": {
+    "url": "https://github.com/PrimeOrdinal/orbital/issues"
+  },
+  "description": "",
+  "dependencies": {
+    "@material/data-table": "3.2.0",
+    "@material/list": "3.2.0",
+    "@material/mwc-button": "0.8.0",
+    "@material/mwc-drawer": "0.8.0",
+    "@material/mwc-fab": "0.8.0",
+    "@material/mwc-formfield": "0.8.0",
+    "@material/mwc-icon": "0.8.0",
+    "@material/mwc-icon-button": "0.8.0",
+    "@material/mwc-radio": "0.8.0",
+    "@material/mwc-switch": "0.8.0",
+    "@material/mwc-tab": "0.8.0",
+    "@material/mwc-tab-bar": "0.8.0",
+    "@material/mwc-top-app-bar": "0.8.0",
+    "@polymer/polymer": "3.3.0",
+    "@webcomponents/webcomponentsjs": "2.3.0",
+    "dayjs": "1.8.16",
+    "leaflet": "^1.5.1",
+    "lit-element": "2.2.1",
+    "pwa-helpers": "0.9.1"
+  },
+  "devDependencies": {
+    "@polymer/test-fixture": "^4.0.2",
+    "polyserve": "^0.27.15",
+    "prpl-server": "^1.4.0",
+    "size-limit": "^2.1.6",
+    "wct-mocha": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=10.0"
+  },
+  "homepage": "https://github.com/PrimeOrdinal/orbital#readme",
+  "husky": {
+    "hooks": {
+      "post-commit": "lint-staged",
+      "post-merge": "npm install",
+      "pre-push": "lerna run-script test"
+    }
+  },
+  "jest": {
+    "coverageReporters": [
+      "html"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "testRegex": "src/.+\\.test\\.ts$",
+    "transform": {
+      ".ts": "ts-jest"
+    }
+  },
+  "license": "ISC",
+  "lint-staged": {
+    "*.{js,ts}": [
+      "git add",
+      "lerna run-script lint"
+    ]
+  },
+  "main": "dist/index.js",
+  "name": "orbital-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PrimeOrdinal/orbital.git"
+  },
+  "scripts": {
+    "service:start": "",
+    "start": "npm run-script service:start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "500 ms"
+    }
+  ]
+}

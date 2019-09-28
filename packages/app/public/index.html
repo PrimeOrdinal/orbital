@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Orbital</title>
+    <meta name="generator" content="Orbital generator" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Orbital description" />
+
+    <base href="/" />
+
+    <link rel="icon" type="image/svg+xml" href="/images/icons/logomark.svg" />
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json" />
+
+    <link
+      rel="stylesheet"
+      href="//aui-cdn.atlassian.com/aui-adg/5.8.12/css/aui.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="//aui-cdn.atlassian.com/aui-adg/5.8.12/css/aui-experimental.css"
+      media="all"
+    />
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#3f51b5" />
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Orbital" />
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Orbital" />
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WGX2VZJ");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.7/pwacompat.min.js"
+      integrity="sha384-ptgwb3/v69WGur7IwSnWOowVxE7hcRB3DG/EiHdejrw2sFNwUHynFbiRMPxc4hdS"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta
+      name="msapplication-TileImage"
+      content="images/manifest/icon-144x144.png"
+    />
+    <meta name="msapplication-TileColor" content="#3f51b5" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- Default twitter cards -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@username" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="main-app" />
+    <meta property="og:image" content="images/manifest/icon-144x144.png" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+
+    <link
+      rel="preload"
+      href="js/components/main-app.js"
+      as="script"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://connect-cdn.atl-paas.net/all-debug.js"></script>
+
+    <script>
+      // Load and register pre-caching Service Worker
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+          navigator.serviceWorker.register("service-worker.js", {
+            scope: "/"
+          });
+        });
+      }
+
+      // Redux assumes `process.env.NODE_ENV` exists in the ES module build.
+      // https://github.com/reactjs/redux/issues/2907
+      window.process = { env: { NODE_ENV: "production" } };
+    </script>
+
+    <!-- Add any global styles for body, document, etc. -->
+    <style>
+      @font-face {
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        src: local("Roboto"),
+          url(https://fonts.googleapis.com/css?family=Roboto) format("woff2");
+        /* The browser draws the text immediately in the fallback font if the font
+           isn't loaded, then swaps it with the webfont when it eventually loads
+           See: https://developers.google.com/web/updates/2016/02/font-display
+        */
+        font-display: swap;
+      }
+
+      body {
+        margin: 0;
+        /* This is a font-stack that tries to use the system-default sans-serifs first */
+        font-family: Helvetica, Arial, sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji", "Segoe UI Symbol";
+        line-height: 1.5;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #noscript {
+        align-content: start;
+        box-sizing: border-box;
+        display: grid;
+        height: 100vh;
+        justify-items: center;
+        padding: 1rem;
+      }
+
+      #noscript img {
+        max-width: 200px;
+        width: 50vw;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: black;
+        }
+      }
+    </style>
+  </head>
+  <body class="aui-page-hybrid">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=INSERT-ID-HERE"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="ac-content">
+      <main-app appTitle="Orbital" view="default"></main-app>
+    </div>
+
+    <noscript>
+      <div id="noscript">
+        <img
+          alt="Orbital logo"
+          class="logo"
+          loading="lazy"
+          src="/images/icons/logomark.svg"
+        />
+        <p>JavaScript appear to be disabled on your device</p>
+        <p>
+          Please go to your device or browser settings and enable JavaScript in
+          order to access the app
+        </p>
+      </div>
+    </noscript>
+
+    <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
+    <!-- <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script> -->
+
+    <script
+      type="module"
+      src="js/components/main-app.js"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "commonjs",
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "extends": "../../tsconfig.settings.json",
+  "include": ["src/**/*.ts", "../../global.d.ts"]
+}

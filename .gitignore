@@ -1,0 +1,14 @@
+.DS_Store
+*.idea
+*.iml
+*.pem
+*.tsbuildinfo
+credentials.json
+build
+dist
+node_modules
+/postgres
+/logfile
+/.env
+/tmp
+logfile

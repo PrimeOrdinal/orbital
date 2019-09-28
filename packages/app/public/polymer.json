@@ -1,0 +1,40 @@
+{
+  "entrypoint": "index.html",
+  "root_old": "packages/app/dist",
+  "shell": "js/components/main-app.js",
+  "sources": [
+    "images/**/*"
+  ],
+  "extraDependencies": [
+    "node_modules/@material/checkbox/dist/mdc.checkbox.min.css",
+    "node_modules/@material/data-table/dist/mdc.data-table.min.css",
+    "node_modules/@material/mwc-icon/**",
+    "node_modules/@webcomponents/webcomponentsjs/**",
+    "node_modules/lit-html/**",
+    "404.html",
+    "manifest.json",
+    "push-manifest.json"
+  ],
+  "builds": [
+    {
+      "name": "esm-bundled",
+      "browserCapabilities": [
+        "es2015",
+        "modules"
+      ],
+      "js": {
+        "minify": true
+      },
+      "css": {
+        "minify": true
+      },
+      "html": {
+        "minify": true
+      },
+      "bundle": true,
+      "addServiceWorker": true
+    }
+  ],
+  "moduleResolution": "node",
+  "npm": true
+}

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "esnext",
+    "outDir": "dist/js",
+    "rootDir": "src"
+  },
+  "extends": "../../tsconfig.settings.json",
+  "include": ["src/**/*.ts", "../../global.d.ts"]
+}

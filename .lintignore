@@ -1,0 +1,14 @@
+.idea
+.nyc_output
+.vscode
+*.log
+*.zip
+cfn
+coverage
+dist
+docker
+docs
+keys
+node_modules
+report
+tmp
