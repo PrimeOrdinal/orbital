@@ -47,7 +47,21 @@ create function forum_example.search_jobs(search integer) returns setof forum_ex
   );
 $$ language sql stable;
 
+create function forum_example.search_jobs_by_location(lat numeric, lng numeric, radius numeric default 5) returns JSON as $$
+  select row_to_json(fc)
+  from (
+    select 'FeatureCollection' as type, array_to_json(array_agg(f)) as jobs
+    from (select 'Feature' as type, st_asgeojson(lg.geom)::json as geometry, row_to_json((select l from (select id, category) as l)) as properties
+    from forum_example.job as lg where st_dwithin(
+    geom,
+    st_geomfromtext('point(' || lat || ' ' || lng || ')', 26910),
+    radius
+  ) ) as f
+  ) as fc;
+$$ language sql stable;
+
 comment on function forum_example.search_jobs(integer) is 'Returns jobs containing a given search term.';
+comment on function forum_example.search_jobs_by_location(numeric, numeric, numeric) is 'Returns jobs within a specified radius of the supplied coordinates.';
 
 create table forum_example.person (
   -- id               serial primary key,
@@ -256,7 +270,6 @@ grant execute on function forum_example.search_posts(text) to forum_example_anon
 grant execute on function forum_example.authenticate(text, text) to forum_example_anonymous, forum_example_person;
 grant execute on function forum_example.current_person() to forum_example_anonymous, forum_example_person;
 grant execute on function forum_example.change_password(text, text) to forum_example_person;
--- grant execute on function forum_example.search_jobs(text) to forum_example_person;
 
 grant execute on function forum_example.register_person(text, text, text, text) to forum_example_anonymous;
 

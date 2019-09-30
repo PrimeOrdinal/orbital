@@ -61,8 +61,9 @@ insert into forum_example.post (id, author_id, headline, body, topic, created_at
 -- alter sequence forum_example.post_id_seq restart with 31;
 
 -- add a point
-insert into forum_example.job (geom, category) values (
-  st_geomfromtext('point(0 0)', 26910), 'boiler'
-);
+insert into forum_example.job (geom, category) values
+  (st_geomfromtext('point(42.40047 -71.2577)', 26910), 'boiler'),
+  (st_geomfromtext('point(42.99019 -71.46259)', 26910), 'plumbing'),
+  (st_geomfromtext('point(-96.75724 32.90977)', 26910), 'electrical');
 
 commit;

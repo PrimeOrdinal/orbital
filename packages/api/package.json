@@ -63,7 +63,7 @@
     "database:import": "npm run-script database:import:postgis && npm run-script database:import:schema && npm run-script database:import:data",
     "database:init": "initdb",
     "database:setup": "npm run-script database:setup:init && npm run-script database:setup:create",
-    "database:terminal": "psql $DATABASE_URL",
+    "database:terminal": "psql $DATABASE_URI",
     "service:start": "postgraphile --append-plugins @graphile-contrib/pg-simplify-inflector @graphile-contrib/pg-many-to-many --enhance-graphiql --no-ignore-rbac --schema $DB_SCHEMA",
     "start": "npm run-script service:start",
     "test": "echo \"Error: no test specified\" && exit 1"

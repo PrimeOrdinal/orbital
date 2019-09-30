@@ -82,8 +82,6 @@
     "build:app:static": "gulp build && polymer build",
     "build": "gulp build",
     "compile": "tsc --build --force",
-    "database:development": "ts-node -r esm  --project packages/api/tsconfig.json packages/api/src/database/develop",
-    "database:start": "pg_ctl -D ./postgres -l logfile start",
     "install:dependencies:api": "cd packages/api && npm install",
     "install:dependencies:app": "cd packages/app && npm install",
     "install:dependencies": "npm run-script install:dependencies:api && npm run-script install:dependencies:app",
